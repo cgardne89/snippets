@@ -1,0 +1,13 @@
+name: HazelsEssentials
+version: '1.0-SNAPSHOT'
+main: com.xurses.hazelsEssentials.HazelsEssentials
+api-version: '1.21'
+depend: [Vault]
+commands:
+  config:
+    description: Adds or updates a configuration key-value pair.
+    usage: /config <key> <value>
+  mycoords:
+    description: Adds current coords to the screen.
+    usage: /mycoords
+
