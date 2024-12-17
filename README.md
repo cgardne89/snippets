@@ -3,13 +3,14 @@
 
 HazelsEssentials is a comprehensive Minecraft plugin designed to enhance gameplay with a rich set of features tailored for server owners and players. From creating unique in-game items and crafting recipes to customizing combat encounters, HazelsEssentials empowers servers to deliver engaging and dynamic experiences.
 
-## Features
+## Planned Features
 
 - **Everything customizable**: Anyone with non-coding skills will be able to easily customize anything within the plugin
 - **Custom Jobs**: Create and manage unique in-game roles with tailored perks and rewards.
 - **Boss Encounters**: Design and implement custom bosses with configurable abilities and behaviors.
 - **Custom Items**: Introduce new, fully customizable items to enrich player interactions and economies.
 - **Skill System**: Add depth to gameplay with custom skills and abilities for players.
+- **RPG randomized loot system**: Randomly generated unique items. 
 - **And More**: Additional tools and enhancements to streamline server management and expand gameplay possibilities are planned in future releases.
 
 ## Requirements
