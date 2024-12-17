@@ -16,7 +16,7 @@ HazelsEssentials is a comprehensive Minecraft plugin designed to enhance gamepla
 ## Requirements
 
 - Minecraft server version [specific version or range]  
-- Java 8 or higher
+- Java 17 or higher
 
 ## Installation
 
