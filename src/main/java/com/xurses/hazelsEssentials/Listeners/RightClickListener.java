@@ -19,7 +19,7 @@ import java.io.IOException;
 public class RightClickListener implements Listener {
 
 
-        @EventHandler
+        /*@EventHandler
         public void onPlayerRightClick(PlayerInteractEvent event) {
 // chicken butt
 
@@ -27,7 +27,7 @@ public class RightClickListener implements Listener {
 
 
                 }
-        }
+        }*/
 }
 
 
