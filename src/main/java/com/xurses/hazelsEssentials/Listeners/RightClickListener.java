@@ -1,30 +1,40 @@
 package com.xurses.hazelsEssentials.Listeners;
 
 
-import com.xurses.hazelsEssentials.HazelsEssentials;
-import com.xurses.hazelsEssentials.Utility.CurrencyManager;
-import net.milkbowl.vault.economy.Economy;
-import org.bukkit.Material;
+import com.xurses.hazelsEssentials.Utility.ConfigHandler;
+import com.xurses.hazelsEssentials.Utility.Serialization_Practice;
+import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
-import org.bukkit.block.spawner.SpawnerEntry;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import java.io.File;
+import java.io.IOException;
 
 public class RightClickListener implements Listener {
 
-    @EventHandler
-    public void checkRightClick(PlayerInteractEvent e) {
-        Player player = e.getPlayer();
-        Block block = e.getClickedBlock();
-        Material iteminHand = e.getPlayer().getEquipment().getItemInMainHand().getType();
+
+        @EventHandler
+        public void onPlayerRightClick(PlayerInteractEvent event) {
+
+
+                if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+
+
+                }
+        }
+}
+
+
+
 
 
             //player.sendMessage(" Action: " + e.getAction() +  block.getBlockData() + "Used Block: " + iteminHand);
-        }
-    }
+
+
 

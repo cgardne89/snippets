@@ -4,6 +4,8 @@ import com.xurses.hazelsEssentials.HazelsEssentials;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,6 +13,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +30,11 @@ public class RespawnOreHandler implements Listener {
 
 
     @EventHandler
-    public void onBlocksBroken(BlockBreakEvent e){
+    public void onBlocksBroken(BlockBreakEvent e) {
         Material mBlock = e.getBlock().getType();
         Block block = e.getBlock();
         Location lBlock = e.getBlock().getLocation();
+        Player player = e.getPlayer();
         long baseTime = 20 * 3600L;
         for (int i = 0; i < ArrayLists.ores.size(); i++ ){
             Long respawnTime = baseTime * (i + 1);
@@ -36,7 +42,8 @@ public class RespawnOreHandler implements Listener {
 
         }
 
-        if (ores.contains(mBlock)){
+
+        if (ores.contains(mBlock) && player.isSneaking()){
 
             for (ItemStack itemStack : block.getDrops()) {
                 ItemStack droppedItem = new ItemStack(itemStack);

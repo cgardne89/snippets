@@ -14,6 +14,7 @@ com\xurses\hazelsEssentials\Utility\BlockLoggingHandler$MultiValues.class
 com\xurses\hazelsEssentials\Utility\BossHandler.class
 com\xurses\hazelsEssentials\Jobs\CombatJob.class
 com\xurses\hazelsEssentials\Listeners\GatheringListener.class
+com\xurses\hazelsEssentials\Utility\Debuffs$1.class
 com\xurses\hazelsEssentials\Utility\CustomLootTables$1.class
 com\xurses\hazelsEssentials\Jobs\SmeltingJob.class
 com\xurses\hazelsEssentials\Utility\CurrencyManager.class
@@ -21,6 +22,7 @@ com\xurses\hazelsEssentials\Utility\RespawnOreHandler.class
 com\xurses\hazelsEssentials\Jobs\FishingJob.class
 com\xurses\hazelsEssentials\Utility\Commands\ConfigCommandHandler.class
 com\xurses\hazelsEssentials\Utility\ArrayLists.class
+com\xurses\hazelsEssentials\HazelsEssentials$3.class
 com\xurses\hazelsEssentials\Utility\RespawnOreHandler$1.class
 com\xurses\hazelsEssentials\Listeners\GatheringListener$1.class
 com\xurses\hazelsEssentials\HazelsEssentials.class
@@ -33,6 +35,8 @@ com\xurses\hazelsEssentials\Utility\Commands\CoordsCommand$1.class
 com\xurses\hazelsEssentials\Utility\CustomLootTables.class
 com\xurses\hazelsEssentials\Utility\LevelCalculator.class
 com\xurses\hazelsEssentials\Utility\Commands\CoordsCommand$PlayerData.class
+com\xurses\hazelsEssentials\Utility\Debuffs.class
+com\xurses\hazelsEssentials\Utility\Serialization_Practice.class
 com\xurses\hazelsEssentials\Listeners\GatheringListener$2.class
 com\xurses\hazelsEssentials\Listeners\RightClickListener.class
 com\xurses\hazelsEssentials\Listeners\CombatListener.class

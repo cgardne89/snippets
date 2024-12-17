@@ -89,10 +89,6 @@ public class ConfigHandler{
                 if (playerFile.createNewFile()) {
                     FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
                     handleData(playerData, player);
-
-
-
-
                     savePlayerFile(playerData, playerFile);
                     getLogger().info("Player file created successfully for: " + player.getName());
                 } else {
@@ -104,8 +100,6 @@ public class ConfigHandler{
             }
         } else {
             FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
-            //handleData(playerData, player);
-            //savePlayerFile(playerData, playerFile); // Save changes
             getLogger().info("File already exists for player: " + player.getName());
         }
     }

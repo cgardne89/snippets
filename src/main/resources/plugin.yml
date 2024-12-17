@@ -10,4 +10,7 @@ commands:
   mycoords:
     description: Adds current coords to the screen.
     usage: /mycoords
+  pet:
+    description: make a pet
+    usage: /pet
 

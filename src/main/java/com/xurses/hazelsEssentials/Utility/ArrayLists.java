@@ -73,19 +73,25 @@ public class ArrayLists implements Listener {
         //Land Bosses
         landBosses.add(EntityType.ZOMBIE);
 
-
         //ores
-        ores.add(Material.DIAMOND_ORE);
-        ores.add(Material.LAPIS_ORE);
-        ores.add(Material.NETHER_GOLD_ORE);
-        ores.add(Material.NETHER_QUARTZ_ORE);
-        ores.add(Material.REDSTONE_ORE);
-        ores.add(Material.EMERALD_ORE);
         ores.add(Material.COAL_ORE);
+        ores.add(Material.COPPER_ORE);
         ores.add(Material.IRON_ORE);
         ores.add(Material.GOLD_ORE);
-        ores.add(Material.COPPER_ORE);
         ores.add(Material.REDSTONE_ORE);
+        ores.add(Material.LAPIS_ORE);
+        ores.add(Material.EMERALD_ORE);
+        ores.add(Material.DIAMOND_ORE);
+        ores.add(Material.NETHER_GOLD_ORE);
+        ores.add(Material.NETHER_QUARTZ_ORE);
+        ores.add(Material.DEEPSLATE_COAL_ORE);
+        ores.add(Material.DEEPSLATE_COPPER_ORE);
+        ores.add(Material.DEEPSLATE_IRON_ORE);
+        ores.add(Material.DEEPSLATE_GOLD_ORE);
+        ores.add(Material.DEEPSLATE_REDSTONE_ORE);
+        ores.add(Material.DEEPSLATE_LAPIS_ORE);
+        ores.add(Material.DEEPSLATE_EMERALD_ORE);
+        ores.add(Material.DEEPSLATE_DIAMOND_ORE);
         //add Deep slate ores
 
         //Seeds
@@ -96,6 +102,15 @@ public class ArrayLists implements Listener {
         seeds.add(Material.TORCHFLOWER_SEEDS);
         seeds.add(Material.CARROT);
         seeds.add(Material.POTATO);
+        seeds.add(Material.NETHER_WART); // Plantable in the Nether
+        seeds.add(Material.COCOA_BEANS); // Plantable on jungle wood
+        seeds.add(Material.BAMBOO); // Grows into bamboo plants
+        seeds.add(Material.SUGAR_CANE); // Grows into sugar cane plants
+        seeds.add(Material.KELP); // Grows underwater
+        seeds.add(Material.SWEET_BERRIES); // Grows into sweet berry bushes
+        seeds.add(Material.GLOW_BERRIES); // Can be planted to grow on cave vines
+        seeds.add(Material.CHORUS_FLOWER); // Grows into chorus plants
+        seeds.add(Material.PITCHER_POD); // Grows into Pitcher Crop
 
 
         //Farming Materials
@@ -113,6 +128,12 @@ public class ArrayLists implements Listener {
         crops.add(Material.MELON);
         crops.add(Material.CHORUS_FRUIT);
         crops.add(Material.PITCHER_CROP);
+        crops.add(Material.BAMBOO);
+        crops.add(Material.KELP);
+        crops.add(Material.SWEET_BERRIES);
+        crops.add(Material.GLOW_BERRIES);
+        crops.add(Material.TORCHFLOWER_CROP);
+        crops.add(Material.SEA_PICKLE);
 
         //logTypes
 
