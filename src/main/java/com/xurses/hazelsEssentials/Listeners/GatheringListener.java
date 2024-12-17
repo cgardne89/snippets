@@ -46,13 +46,10 @@ public class GatheringListener implements Listener {
         Material blockType = e.getBlock().getType();
         Block block = e.getBlock();
 
-        List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "ores");
+        List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.ores");
         ArrayList<Material> ores = new ArrayList<>(ArrayLists.convertStringToMaterialList((ArrayList<String>) TempArray));
 
-        TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "logTypes");
-        ArrayList<Material> logTypes = new ArrayList<>(ArrayLists.convertStringToMaterialList((ArrayList<String>) TempArray));
-
-        if (ores.contains(blockType) || logTypes.contains(blockType)) {
+        if (ores.contains(blockType)) {
             // Add block type to the harvest map
             UUID playerId = player.getUniqueId();
             harvestMap.putIfAbsent(playerId, new HashMap<>());
@@ -81,7 +78,7 @@ public class GatheringListener implements Listener {
 
 
             if (rand.nextFloat() <= 0.01) {
-                TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "landBosses");
+                TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.landBosses");
                 ArrayList<EntityType> landBosses = new ArrayList<>(ArrayLists.convertStringToEntityType((ArrayList<String>) TempArray));
                 BossHandler.spawnCustomMob(block.getLocation(), player, landBosses.get(rand.nextInt(landBosses.size())), 0.01, 30, 100, 100);
             }
@@ -117,7 +114,7 @@ public class GatheringListener implements Listener {
             cropsPlantedMap.putIfAbsent(playerId, 0);
             int plantedCrops = cropsPlantedMap.getOrDefault(playerId, 0);
             if (rand.nextFloat() <= 0.01 && plantedCrops != 0) {
-                List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "landBosses");
+                List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.landBosses");
                 ArrayList<EntityType> landBosses = new ArrayList<>(ArrayLists.convertStringToEntityType((ArrayList<String>) TempArray));
                 BossHandler.spawnCustomMob(block.getLocation(), event.getPlayer(), landBosses.get(rand.nextInt(landBosses.size())), 0.01, 30, 100, 100);
         }
@@ -133,7 +130,7 @@ public class GatheringListener implements Listener {
             if (block.getType() == Material.FARMLAND) {
                 // Check if the block above is a crop (e.g., wheat, carrot)
                 Block above = block.getRelative(BlockFace.UP);
-                List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "crops");
+                List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.crops");
                 ArrayList<Material> crops = new ArrayList<>(ArrayLists.convertStringToMaterialList((ArrayList<String>) TempArray));
 
                 if (crops.contains(above.getType()) || seeds.contains(above.getType())) {

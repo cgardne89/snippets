@@ -1,14 +1,21 @@
 package com.xurses.hazelsEssentials.Utility;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DataConstants {
 
-    // static is a public variable, an interger can be nulled, and int cant be,
-    // and final means that it can not be changed
     public static final String NAME_KEY = "name";
     public static final String UUID_KEY = "UUID";
-    public static final String MAXBANK_KEY = "Max Bank";
-    public static String JOB_KEY = "Job";
-    public static String CURRENTXP_KEY = "Current XP";
-    public static String CURRENTLEVEL_KEY = "Current Level";
+    public static List<String> MAXBANK_KEY = new ArrayList<>();
+    public static List<String> MAXSTATLEVEL_KEY = new ArrayList<>();
+    public DataConstants() {
+
+        MAXBANK_KEY.add("Max_Bank");
+        MAXBANK_KEY.add("0.01");
+
+        MAXSTATLEVEL_KEY.add("Stats.Max_Level");
+        MAXSTATLEVEL_KEY.add("15");
+    }
 
 }

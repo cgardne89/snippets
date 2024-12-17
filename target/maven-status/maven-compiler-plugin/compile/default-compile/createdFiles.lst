@@ -29,6 +29,7 @@ com\xurses\hazelsEssentials\HazelsEssentials.class
 com\xurses\hazelsEssentials\Utility\DataConstants.class
 com\xurses\hazelsEssentials\Jobs\JobManager.class
 com\xurses\hazelsEssentials\Jobs\CookingJob.class
+com\xurses\hazelsEssentials\Utility\Commands\JobsCommand.class
 com\xurses\hazelsEssentials\Jobs\WoodcuttingJob.class
 com\xurses\hazelsEssentials\HazelsEssentials$1.class
 com\xurses\hazelsEssentials\Utility\Commands\CoordsCommand$1.class

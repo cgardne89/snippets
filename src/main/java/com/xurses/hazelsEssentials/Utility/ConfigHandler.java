@@ -1,5 +1,7 @@
 package com.xurses.hazelsEssentials.Utility;
 
+import com.xurses.hazelsEssentials.Jobs.FishingJob;
+import com.xurses.hazelsEssentials.Jobs.JobManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -67,28 +69,38 @@ public class ConfigHandler{
         }
     }
 
-    public static void handleData(FileConfiguration playerData, Player player){
+    public static void handlePlayerData(FileConfiguration playerData, Player player){
         playerData.set(DataConstants.NAME_KEY, player.getName());
         playerData.set(DataConstants.UUID_KEY, player.getUniqueId().toString());
-        playerData.set(DataConstants.MAXBANK_KEY, ".01");
-        playerData.set(DataConstants.JOB_KEY, "Jobless");
-        playerData.set(DataConstants.CURRENTXP_KEY, "0");
-        playerData.set(DataConstants.CURRENTLEVEL_KEY, "0");
+        playerData.set("Stats.Fishing.CurrentXP", FishingJob.baseXP);
+        playerData.set("Stats.Fishing.Level", FishingJob.level);
+        playerData.set("Job", JobManager.Job);
     }
+
+    public static void handleServerData(FileConfiguration serverData, File file) {
+        if (!file.exists()) {
+            serverData.set(DataConstants.MAXBANK_KEY.get(0), DataConstants.MAXBANK_KEY.get(1));
+            serverData.set(DataConstants.MAXSTATLEVEL_KEY.get(0), DataConstants.MAXSTATLEVEL_KEY.get(1));
+    } else {
+            DataConstants.MAXBANK_KEY.add(1, serverData.get("Max_Bank").toString());
+        }
+    }
+
     public void handlePlayerQuit(Player player){
         File playerFile = getPlayerFile(player);
         FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
-        //handleData(playerData, player);
+        handlePlayerData(playerData, player);
         savePlayerFile(playerData, playerFile);
         getLogger().info(player.getName() + "'s file saved");
     }
+
     public void handlePlayerJoin(Player player) {
         File playerFile = getPlayerFile(player);
         if (!playerFile.exists()) {
             try {
                 if (playerFile.createNewFile()) {
                     FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
-                    handleData(playerData, player);
+                    handlePlayerData(playerData, player);
                     savePlayerFile(playerData, playerFile);
                     getLogger().info("Player file created successfully for: " + player.getName());
                 } else {
@@ -100,6 +112,9 @@ public class ConfigHandler{
             }
         } else {
             FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
+            FishingJob.baseXP = playerData.getInt("Stats.Fishing.CurrentXP");
+            FishingJob.level = playerData.getInt("Stats.Fishing.Level");
+            JobManager.Job = playerData.get("Job").toString();
             getLogger().info("File already exists for player: " + player.getName());
         }
     }
@@ -122,7 +137,7 @@ public class ConfigHandler{
             }
         } else {
             try {
-                file.set(key, list);
+                file.set("Lists." + key, list);
                 file.save(configFile);
             } catch (IOException e) {
                 throw new RuntimeException(e);

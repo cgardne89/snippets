@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RespawnOreHandler implements Listener {
-    List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "ores");
+    List<String> TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.ores");
     ArrayList<Material> ores = new ArrayList<>(ArrayLists.convertStringToMaterialList((ArrayList<String>) TempArray));
     public static Map<Location, Material> blockLogging = new HashMap<>();
     Map<Material, Long> respawnTimers = new HashMap<>();

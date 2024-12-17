@@ -13,4 +13,7 @@ commands:
   pet:
     description: make a pet
     usage: /pet
+  job:
+    description: Join a job
+    usage: /job set [job name]
 

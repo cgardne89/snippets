@@ -9,11 +9,14 @@ import com.xurses.hazelsEssentials.Listeners.RightClickListener;
 import com.xurses.hazelsEssentials.Utility.*;
 import com.xurses.hazelsEssentials.Utility.Commands.ConfigCommandHandler;
 import com.xurses.hazelsEssentials.Utility.Commands.CoordsCommand;
+import com.xurses.hazelsEssentials.Utility.Commands.JobsCommand;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -23,6 +26,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 
@@ -55,16 +60,28 @@ public final class HazelsEssentials extends JavaPlugin implements Listener {
         pm.registerEvents(new JobManager(), this);
         pm.registerEvents(new BossHandler(), this);
         pm.registerEvents(new RightClickListener(), this);
-        pm.registerEvents(new ArrayLists(), this);
         pm.registerEvents(new CookingListener(), this);
         pm.registerEvents(new BlockLoggingHandler(), this);
         pm.registerEvents(new RespawnOreHandler(), this);
         pm.registerEvents(new Debuffs(), this);
+        new DataConstants();
+        new LevelCalculator();
+
 
 
         getCommand("config").setExecutor(new ConfigCommandHandler(this));
         getCommand("mycoords").setExecutor(new CoordsCommand());
+        getCommand("job").setExecutor(new JobsCommand(this));
 
+        File file = new File(JavaPlugin.getProvidingPlugin(HazelsEssentials.class).getDataFolder(), "config.yml");
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        ConfigHandler.handleServerData(config, file);
+        try {
+            config.save(file);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        pm.registerEvents(new ArrayLists(), this);
         setupEcon();
         ConfigHandler configHandler = ConfigHandler.getInstance(this);
 
