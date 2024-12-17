@@ -1,42 +1,37 @@
+
 # HazelsEssentials
 
-HazelsEssentials is a Java-based project designed to provide essential tools and utilities for streamlined application development. It includes a structured Maven setup for easy dependency management and build configuration.
+HazelsEssentials is a comprehensive Minecraft plugin designed to enhance gameplay with a rich set of features tailored for server owners and players. From creating unique in-game items and crafting recipes to customizing combat encounters, HazelsEssentials empowers servers to deliver engaging and dynamic experiences.
 
 ## Features
 
-- **Core Functionality**: Essential utilities to enhance development.
-- **Modular Design**: Easily extendable components.
-- **Maven Integration**: Simplified build and dependency management.
+- **Everything customizable**: Anyone with non-coding skills will be able to easily customize anything within the plugin
+- **Custom Jobs**: Create and manage unique in-game roles with tailored perks and rewards.
+- **Boss Encounters**: Design and implement custom bosses with configurable abilities and behaviors.
+- **Custom Items**: Introduce new, fully customizable items to enrich player interactions and economies.
+- **Skill System**: Add depth to gameplay with custom skills and abilities for players.
+- **And More**: Additional tools and enhancements to streamline server management and expand gameplay possibilities are planned in future releases.
 
 ## Requirements
 
+- Minecraft server version [specific version or range]  
 - Java 8 or higher
-- Maven 3.6+
 
 ## Installation
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/cgardne89/HazelsEssentials.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd HazelsEssentials
-   ```
-3. Build the project with Maven:
-   ```bash
-   mvn clean install
-   ```
+1. Download the plugin JAR file from the [Releases](https://github.com/cgardne89/HazelsEssentials/releases) page.
+2. Place the JAR file in your server's `plugins` directory.
+3. Restart your server to generate the default configuration files.
+4. Edit the configuration files to suit your server's needs.
 
 ## Usage
 
-1. Include the compiled JAR file in your project.
-2. Add the required dependencies in your `pom.xml` if using Maven.
-3. Refer to the Java classes for specific functionality.
+- Refer to the comprehensive documentation included with the plugin for setup and customization instructions.
+- Leverage configuration files to enable or disable specific features and tailor the plugin to your server.
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Whether you're reporting bugs, suggesting features, or submitting pull requests, your support helps improve HazelsEssentials for the community.
 
 1. Fork the repository.
 2. Create a feature branch:
@@ -59,4 +54,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or support, please contact [repository owner](https://github.com/cgardne89).
+For questions or support, reach out via the [repository owner](https://github.com/cgardne89).  
