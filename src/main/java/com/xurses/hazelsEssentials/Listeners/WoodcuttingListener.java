@@ -11,10 +11,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class WoodcuttingListener implements Listener {
-    ArrayList<String> TempArray =  new ArrayList<>(ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials .class), "Lists.logTypes"));
+    File file = new File(JavaPlugin.getProvidingPlugin(HazelsEssentials.class).getDataFolder(), "Check_Lists.yml");
+
+    ArrayList<String> TempArray =  new ArrayList<>(ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials .class), file, "logTypes"));
     ArrayList<Material> logTypes = new ArrayList<>(ArrayLists.convertStringToMaterialList((ArrayList<String>) TempArray));
 
 

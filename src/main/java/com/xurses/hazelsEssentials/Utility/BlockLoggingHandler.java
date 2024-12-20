@@ -1,7 +1,6 @@
 package com.xurses.hazelsEssentials.Utility;
 
 import com.xurses.hazelsEssentials.HazelsEssentials;
-import com.xurses.hazelsEssentials.Utility.ConfigHandler;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

@@ -2,14 +2,13 @@ package com.xurses.hazelsEssentials;
 
 
 import com.xurses.hazelsEssentials.Jobs.JobManager;
-import com.xurses.hazelsEssentials.Listeners.CookingListener;
-import com.xurses.hazelsEssentials.Listeners.FishingListener;
-import com.xurses.hazelsEssentials.Listeners.GatheringListener;
-import com.xurses.hazelsEssentials.Listeners.RightClickListener;
+import com.xurses.hazelsEssentials.Listeners.*;
 import com.xurses.hazelsEssentials.Utility.*;
 import com.xurses.hazelsEssentials.Utility.Commands.ConfigCommandHandler;
 import com.xurses.hazelsEssentials.Utility.Commands.CoordsCommand;
 import com.xurses.hazelsEssentials.Utility.Commands.JobsCommand;
+
+
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -32,7 +31,6 @@ import java.util.Map;
 
 
 public final class HazelsEssentials extends JavaPlugin implements Listener {
-
     private static Economy econ = null;
 
     @Override
@@ -53,20 +51,9 @@ public final class HazelsEssentials extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
-    setupEconomy();
+        setupEconomy();
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new GatheringListener(), this);
-        pm.registerEvents(new FishingListener(), this);
-        pm.registerEvents(new JobManager(), this);
-        pm.registerEvents(new BossHandler(), this);
-        pm.registerEvents(new RightClickListener(), this);
-        pm.registerEvents(new CookingListener(), this);
-        pm.registerEvents(new BlockLoggingHandler(), this);
-        pm.registerEvents(new RespawnOreHandler(), this);
-        pm.registerEvents(new Debuffs(), this);
-        new DataConstants();
-        new LevelCalculator();
-
+        pm.registerEvents(new ArrayLists(), this);
 
 
         getCommand("config").setExecutor(new ConfigCommandHandler(this));
@@ -75,13 +62,15 @@ public final class HazelsEssentials extends JavaPlugin implements Listener {
 
         File file = new File(JavaPlugin.getProvidingPlugin(HazelsEssentials.class).getDataFolder(), "config.yml");
         FileConfiguration config = YamlConfiguration.loadConfiguration(file);
+        new DataConstants();
+        new LevelCalculator();
         ConfigHandler.handleServerData(config, file);
         try {
             config.save(file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pm.registerEvents(new ArrayLists(), this);
+
         setupEcon();
         ConfigHandler configHandler = ConfigHandler.getInstance(this);
 
@@ -98,6 +87,19 @@ public final class HazelsEssentials extends JavaPlugin implements Listener {
             }
         }, this);
 
+
+        pm.registerEvents(new JobManager(), this);
+        pm.registerEvents(new BossHandler(), this);
+        pm.registerEvents(new RightClickListener(), this);
+        pm.registerEvents(new Debuffs(), this);
+        pm.registerEvents(new CookingListener(), this);
+        pm.registerEvents(new WoodcuttingListener(), this);
+        pm.registerEvents(new CombatListener(), this);
+        pm.registerEvents(new SmeltingListener(), this);
+        pm.registerEvents(new GatheringListener(), this);
+        pm.registerEvents(new FishingListener(), this);
+        pm.registerEvents(new BlockLoggingHandler(), this);
+        pm.registerEvents(new RespawnOreHandler(), this);
 
         new BukkitRunnable() {
             @Override
@@ -139,5 +141,6 @@ public final class HazelsEssentials extends JavaPlugin implements Listener {
         return econ;
     }
 
-}
+    }
+
 

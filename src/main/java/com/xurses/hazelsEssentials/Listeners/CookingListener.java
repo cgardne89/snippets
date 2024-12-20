@@ -1,13 +1,8 @@
 package com.xurses.hazelsEssentials.Listeners;
 
-import com.xurses.hazelsEssentials.HazelsEssentials;
-import org.bukkit.*;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.*;
-
-
-
-import static org.bukkit.Bukkit.getServer;
+import org.bukkit.event.inventory.FurnaceBurnEvent;
 
 public class CookingListener implements Listener {
     /*NamespacedKey key = new NamespacedKey(HazelsEssentials.getProvidingPlugin(HazelsEssentials.class), "IronOnFire");
@@ -20,5 +15,9 @@ public class CookingListener implements Listener {
         //getServer().addRecipe(cookIron);
     }
 
+    @EventHandler
+    public void onCooking(FurnaceBurnEvent e){
+
+    }
 
 }

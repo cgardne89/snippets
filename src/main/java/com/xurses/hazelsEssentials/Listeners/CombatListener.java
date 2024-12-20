@@ -12,8 +12,10 @@ public class CombatListener implements Listener {
     public void onEntityDeath(EntityDeathEvent e){
         Player player = e.getEntity().getKiller();
 
-        if (CombatJob.isInCombat(player)){
-            CombatJob.payForWork(player);
+        if (player != null) {
+            if (CombatJob.isInCombat(player)) {
+                CombatJob.payForWork(player);
+        }
         }
 
     }

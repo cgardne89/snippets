@@ -9,7 +9,6 @@ import java.util.Objects;
 public class MiningJob {
     public static int baseXP = 0;
     public static int level = 1;
-    static double multiplier = CurrencyManager.rewardMultiplier(level);
 
 
     public static boolean isMining(Player player) {
@@ -21,7 +20,6 @@ public class MiningJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.eco.depositPlayer(player, 0.01 * multiplier);
-        player.sendMessage(ChatColor.RED + "Mining Job: " + ChatColor.GOLD + "Added " + 0.01 * multiplier + "$.");
+        CurrencyManager.payPlayer(level, player, "Mining Reward");
     }
 }

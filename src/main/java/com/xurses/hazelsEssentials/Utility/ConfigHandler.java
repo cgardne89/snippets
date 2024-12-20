@@ -1,5 +1,6 @@
 package com.xurses.hazelsEssentials.Utility;
 
+import com.google.gson.JsonObject;
 import com.xurses.hazelsEssentials.Jobs.FishingJob;
 import com.xurses.hazelsEssentials.Jobs.JobManager;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -9,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Key;
 import java.util.*;
 
 import static org.bukkit.Bukkit.getLogger;
@@ -17,6 +19,8 @@ public class ConfigHandler{
 
     private static File playerDataFolder = null;
     private static ConfigHandler instance;
+    // TBD // JsonObject jsonObject = new JsonObject();
+
 
     private ConfigHandler(JavaPlugin plugin) {
         this.playerDataFolder = new File(plugin.getDataFolder(), "playerdata");
@@ -75,13 +79,19 @@ public class ConfigHandler{
         playerData.set("Stats.Fishing.CurrentXP", FishingJob.baseXP);
         playerData.set("Stats.Fishing.Level", FishingJob.level);
         playerData.set("Job", JobManager.Job);
+        playerData.set("Current_Balace", CurrencyManager.Current_Balance);
     }
 
     public static void handleServerData(FileConfiguration serverData, File file) {
         if (!file.exists()) {
             serverData.set(DataConstants.MAXBANK_KEY.get(0), DataConstants.MAXBANK_KEY.get(1));
             serverData.set(DataConstants.MAXSTATLEVEL_KEY.get(0), DataConstants.MAXSTATLEVEL_KEY.get(1));
-    } else {
+            try {
+                serverData.save(file);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
             DataConstants.MAXBANK_KEY.add(1, serverData.get("Max_Bank").toString());
         }
     }
@@ -114,14 +124,16 @@ public class ConfigHandler{
             FileConfiguration playerData = YamlConfiguration.loadConfiguration(playerFile);
             FishingJob.baseXP = playerData.getInt("Stats.Fishing.CurrentXP");
             FishingJob.level = playerData.getInt("Stats.Fishing.Level");
-            JobManager.Job = playerData.get("Job").toString();
+            JobManager.Job = Objects.requireNonNull(playerData.get("Job")).toString();
+            player.sendMessage(JobManager.Job);
+            CurrencyManager.Current_Balance = playerData.getInt("Current_Balance");
             getLogger().info("File already exists for player: " + player.getName());
         }
     }
 
 
     public static void saveListToConfig(JavaPlugin plugin, String key, List<String> list) {
-        File configFile = new File(plugin.getDataFolder(), "config.yml");
+        File configFile = new File(plugin.getDataFolder(), "Check_Lists.yml");
         FileConfiguration file = YamlConfiguration.loadConfiguration(configFile);
 
 
@@ -129,6 +141,7 @@ public class ConfigHandler{
         if (!configFile.exists()) {
             try {
                 if (configFile.createNewFile()) {
+                    file.save(configFile);
                     plugin.getLogger().info("Created config.yml file.");
                 }
             } catch (IOException e) {
@@ -137,7 +150,7 @@ public class ConfigHandler{
             }
         } else {
             try {
-                file.set("Lists." + key, list);
+                file.set(key, list);
                 file.save(configFile);
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -146,8 +159,9 @@ public class ConfigHandler{
     }
 
 
-    public static List<String> loadListFromConfig(JavaPlugin plugin, String key) {
-        FileConfiguration config = plugin.getConfig();
+    public static List<String> loadListFromConfig(JavaPlugin plugin, File file, String key) {
+
+        FileConfiguration config = YamlConfiguration.loadConfiguration(file);
 
         // Check if the key exists
         if (config.contains(key)) {
@@ -157,5 +171,6 @@ public class ConfigHandler{
             return new ArrayList<>(); // Return an empty list if the key doesn't exist
         }
     }
+
 
 }

@@ -2,7 +2,6 @@ package com.xurses.hazelsEssentials.Utility;
 
 import com.xurses.hazelsEssentials.HazelsEssentials;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.enchantments.Enchantment;

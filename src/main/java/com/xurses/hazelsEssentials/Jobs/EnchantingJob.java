@@ -9,19 +9,17 @@ import java.util.Objects;
 public class EnchantingJob {
     public static int baseXP = 0;
     public static int level = 1;
-    static double multiplier = CurrencyManager.rewardMultiplier(level);
 
 
     public static boolean isEnchanting(Player player) {
 
-        if (!CurrencyManager.balanceCap(player) && Objects.equals(JobManager.Job, "Enchanter")) {
+        if (!CurrencyManager.balanceCap(player) && Objects.equals(JobManager.Job, "enchanter")) {
             return true;
         }
         return false;
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.eco.depositPlayer(player, 0.01 * multiplier);
-        player.sendMessage(ChatColor.RED + "Enchanting Job: " + ChatColor.GOLD + "Added " + 0.01 * multiplier + "$.");
+        CurrencyManager.payPlayer(level, player, "Enchanting Reward");
     }
 }

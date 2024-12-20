@@ -1,4 +1,6 @@
 package com.xurses.hazelsEssentials.Listeners;
 
-public class SmeltingListener {
+import org.bukkit.event.Listener;
+
+public class SmeltingListener implements Listener {
 }

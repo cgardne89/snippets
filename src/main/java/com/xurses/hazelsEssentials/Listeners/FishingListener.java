@@ -3,9 +3,7 @@ package com.xurses.hazelsEssentials.Listeners;
 import com.xurses.hazelsEssentials.Jobs.FishingJob;
 import com.xurses.hazelsEssentials.Utility.*;
 import com.xurses.hazelsEssentials.HazelsEssentials;
-import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
@@ -15,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -30,7 +29,7 @@ public class FishingListener implements Listener {
     public void onFishing(PlayerFishEvent e) {
         Player player = e.getPlayer();
         Entity caughtEntity = e.getCaught();
-
+        File file = new File(JavaPlugin.getProvidingPlugin(HazelsEssentials.class).getDataFolder(), "Check_Lists.yml");
         Random rand = new Random();
 
         if (caughtEntity == null) {
@@ -40,7 +39,7 @@ public class FishingListener implements Listener {
         String fishedUp = caughtEntity.getName();
 
         if (e.getState() == PlayerFishEvent.State.CAUGHT_FISH && fishedUp != null) {
-            ArrayList rareFishingDrops = (ArrayList) ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.rareFishingDrops");
+            ArrayList rareFishingDrops = (ArrayList) ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), file, "rareFishingDrops");
 
             if (rareFishingDrops.contains(fishedUp)) {
                 broadcastMessage(ChatColor.RED + player.getName() + " fished up a rare " + fishedUp);
@@ -48,7 +47,7 @@ public class FishingListener implements Listener {
 
             if (rand.nextFloat() <= 0.01 && caughtEntity instanceof Item) {
                 try {
-                    List<String>TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), "Lists.airBosses");
+                    List<String>TempArray = ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), file, "airBosses");
                     ArrayList<EntityType> airBosses = new ArrayList<>(ArrayLists.convertStringToEntityType((ArrayList<String>) TempArray));
                     BossHandler.spawnCustomMob(player.getLocation(), player, airBosses.get(rand.nextInt(airBosses.size())), 0.01, 10, 1, 10);
                     player.sendMessage("You caught a terrifying monster!");

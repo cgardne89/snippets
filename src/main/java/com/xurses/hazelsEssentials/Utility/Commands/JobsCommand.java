@@ -1,15 +1,17 @@
 package com.xurses.hazelsEssentials.Utility.Commands;
 
 import com.xurses.hazelsEssentials.Jobs.JobManager;
+import com.xurses.hazelsEssentials.Utility.CurrencyManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
+
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+
+import static org.bukkit.util.NumberConversions.round;
 
 public class JobsCommand implements CommandExecutor {
 
@@ -43,10 +45,17 @@ public class JobsCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Usage: /job set [Job Name]");
                         return true;
                     }
-
                     String value = args[1];
-
                     JobManager.Job = value.toLowerCase();
+                    break;
+                case "bank":
+                    if (args.length < 1) {
+                        player.sendMessage(ChatColor.RED + "Usage: /job [Job Name]");
+                        return true;
+                    }
+
+                    player.sendMessage(String.valueOf(round(CurrencyManager.eco.getBalance(player))));
+
 
                     break;
 
