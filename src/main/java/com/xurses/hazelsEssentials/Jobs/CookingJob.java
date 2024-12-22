@@ -15,6 +15,7 @@ public class CookingJob {
 
         if (!CurrencyManager.balanceCap(player) && Objects.equals(JobManager.Job, "cooker")) {
             return true;
+            // make
         }
         return false;
     }
