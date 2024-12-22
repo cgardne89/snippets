@@ -7,19 +7,19 @@ import com.xurses.hazelsEssentials.*;
 
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
-import static java.lang.Math.round;
 
 public class CurrencyManager {
 
     public static Economy eco = HazelsEssentials.getEconomy();
-    static Random rand = new Random();
-    static double increase;
-    static double Current_Balance;
+    static int increase;
+    static int baseMoney = 1;
 
     public CurrencyManager() {
         initialize();
@@ -38,30 +38,26 @@ public class CurrencyManager {
 
     }
 
-    public static double rewardMultiplier(int level, Player player) {
-        double[] thresholds = {5, 15};
-        ArrayList<Double> cashIncrease = new ArrayList<>();
-        cashIncrease.add(1.0);
-        cashIncrease.add(2.0);
-        float temp = rand.nextFloat();
+    public static int rewardMultiplier(int level) {
+        int[] thresholds = {5, 15};
+        ArrayList<Integer> cashIncrease = new ArrayList<>();
+        cashIncrease.add(1);
+        cashIncrease.add(2);
+        cashIncrease.add(3);
 
-        for (level = 0; level < thresholds.length; level++){
-            if (temp < thresholds[level]){
-                increase = cashIncrease.get(level);
+        for (int i = 0; i < thresholds.length; i++){
+            if (level < thresholds[i]){
+                increase = cashIncrease.get(i);
                 break;
             }
         }
-        return increase;
+        return increase * baseMoney;
     }
 
-    public static void payPlayer(int level, Player player, String Job_Name) {
-
-        CurrencyManager.eco.depositPlayer(player, 0.01 * rewardMultiplier(level, player));
-        CurrencyManager.getCurrentBalance(player);
-        player.sendMessage(ChatColor.RED + Job_Name + ": " + ChatColor.GOLD + "Added " + 0.01 * rewardMultiplier(level, player) + "$.");
+    public static double payPlayer(int level, Player player) {
+        double getReward = rewardMultiplier(level);
+        CurrencyManager.eco.depositPlayer(player, getReward/ 100);
+        return getReward;
     }
 
-    public static void getCurrentBalance(Player player) {
-        Current_Balance = round(eco.getBalance(player) * (100) / 100);
-    }
 }

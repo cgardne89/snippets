@@ -20,6 +20,6 @@ public class SmeltingJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Smelting Reward");
+        CurrencyManager.payPlayer(level, player);
     }
 }

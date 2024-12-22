@@ -1,10 +1,9 @@
 package com.xurses.hazelsEssentials.Utility;
 
-import org.bukkit.configuration.file.YamlConfiguration;
+import com.xurses.hazelsEssentials.Jobs.FishingJob;
+import org.bukkit.EntityEffect;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
-
-import java.io.File;
-import java.io.IOException;
 
 public class LevelCalculator {
     public static int XPneeded = 0;
@@ -13,15 +12,18 @@ public class LevelCalculator {
     public LevelCalculator(){
     }
 
-    public static void calculateLevel(int level, int baseXP) {
-        XPneeded = level * level1XP;
 
-        for (int i = 0; i >= XPneeded; i++){
-            if (baseXP >= XPneeded) {
+
+    public static int calculateLevel(int level, Player player) {
+        XPneeded = level * level1XP;
+        while (FishingJob.baseXP >= XPneeded) {
                 level += 1;
-                baseXP = 0;
-            }
+                FishingJob.baseXP = 0;
+                player.sendMessage("Congrats you are now level " + level);
+                player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+                player.playEffect(EntityEffect.FIREWORK_EXPLODE);
         }
+        return level;
     }
 }
 

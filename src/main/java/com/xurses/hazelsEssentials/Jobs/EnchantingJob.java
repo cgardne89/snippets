@@ -20,6 +20,6 @@ public class EnchantingJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Enchanting Reward");
+        CurrencyManager.payPlayer(level, player);
     }
 }

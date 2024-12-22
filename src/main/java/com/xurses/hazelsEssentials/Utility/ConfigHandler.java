@@ -79,7 +79,6 @@ public class ConfigHandler{
         playerData.set("Stats.Fishing.CurrentXP", FishingJob.baseXP);
         playerData.set("Stats.Fishing.Level", FishingJob.level);
         playerData.set("Job", JobManager.Job);
-        playerData.set("Current_Balace", CurrencyManager.Current_Balance);
     }
 
     public static void handleServerData(FileConfiguration serverData, File file) {
@@ -125,8 +124,7 @@ public class ConfigHandler{
             FishingJob.baseXP = playerData.getInt("Stats.Fishing.CurrentXP");
             FishingJob.level = playerData.getInt("Stats.Fishing.Level");
             JobManager.Job = Objects.requireNonNull(playerData.get("Job")).toString();
-            player.sendMessage(JobManager.Job);
-            CurrencyManager.Current_Balance = playerData.getInt("Current_Balance");
+            CurrencyManager.eco.depositPlayer(player, playerData.getDouble("Current_Balance"));
             getLogger().info("File already exists for player: " + player.getName());
         }
     }

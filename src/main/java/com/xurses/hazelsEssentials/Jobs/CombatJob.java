@@ -21,6 +21,6 @@ public class CombatJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Combat Reward");
+        CurrencyManager.payPlayer(level, player);
     }
 }

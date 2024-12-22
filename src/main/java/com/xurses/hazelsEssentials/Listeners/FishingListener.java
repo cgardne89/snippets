@@ -1,6 +1,7 @@
 package com.xurses.hazelsEssentials.Listeners;
 
 import com.xurses.hazelsEssentials.Jobs.FishingJob;
+import com.xurses.hazelsEssentials.Jobs.JobManager;
 import com.xurses.hazelsEssentials.Utility.*;
 import com.xurses.hazelsEssentials.HazelsEssentials;
 import org.bukkit.ChatColor;
@@ -16,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import static org.bukkit.Bukkit.broadcastMessage;
@@ -42,7 +44,7 @@ public class FishingListener implements Listener {
             ArrayList rareFishingDrops = (ArrayList) ConfigHandler.loadListFromConfig(JavaPlugin.getProvidingPlugin(HazelsEssentials.class), file, "rareFishingDrops");
 
             if (rareFishingDrops.contains(fishedUp)) {
-                broadcastMessage(ChatColor.RED + player.getName() + " fished up a rare " + fishedUp);
+                broadcastMessage(ChatColor.RED + player.getName() + " fished up a rare " + fishedUp.toLowerCase());
             }
 
             if (rand.nextFloat() <= 0.01 && caughtEntity instanceof Item) {
@@ -59,8 +61,10 @@ public class FishingListener implements Listener {
 
                 if (FishingJob.isFishing(player)) {
                     FishingJob.payForWork(player);
+                    player.sendMessage("You caught a " + fishedUp.replace("Raw ", "").toLowerCase() + ". " + ChatColor.RED + "Job Manager: " + ChatColor.GOLD + "Added " + CurrencyManager.payPlayer(FishingJob.level, player) / 100 + "$.");
+                } else {
+                    player.sendMessage("You caught a " + fishedUp.replace("Raw ", "").toLowerCase());
                 }
-                player.sendMessage("You caught a " + fishedUp);
 
             }
         }

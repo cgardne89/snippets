@@ -20,6 +20,6 @@ public class WoodcuttingJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Woodcutting Reward");
+        CurrencyManager.payPlayer(level, player);
     }
 }

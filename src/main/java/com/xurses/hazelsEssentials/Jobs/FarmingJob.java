@@ -20,7 +20,7 @@ public class FarmingJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Farming Reward");
+        CurrencyManager.payPlayer(level, player);
 
     }
 }

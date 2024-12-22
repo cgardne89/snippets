@@ -20,6 +20,6 @@ public class MiningJob {
     }
 
     public static void payForWork(Player player) {
-        CurrencyManager.payPlayer(level, player, "Mining Reward");
+        CurrencyManager.payPlayer(level, player);
     }
 }
